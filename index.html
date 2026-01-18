@@ -12,11 +12,13 @@
             --accent: #60cdff;
             --text: #ffffff;
             --text-dim: rgba(255, 255, 255, 0.6);
+            --border: rgba(255,255,255,0.06);
+            --danger: #f8a306;
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             display: flex;
@@ -31,12 +33,12 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            backdrop-filter: blur(16px);
-            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.8);
             position: fixed;
             top: 0;
             z-index: 10;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid var(--border);
         }
 
         .logo {
@@ -49,17 +51,18 @@
         .status {
             font-size: 12px;
             color: var(--text-dim);
+            letter-spacing: 1px;
         }
 
         .hero {
-            margin-top: 180px;
+            margin-top: 160px;
             text-align: center;
             max-width: 900px;
             padding: 0 20px;
         }
 
         h1 {
-            font-size: 3.6rem;
+            font-size: clamp(2.5rem, 8vw, 4rem);
             font-weight: 800;
             margin-bottom: 16px;
             background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
@@ -69,8 +72,8 @@
 
         .hero p {
             color: var(--text-dim);
-            line-height: 1.9;
-            font-size: 15px;
+            line-height: 1.8;
+            font-size: 16px;
             margin-bottom: 40px;
         }
 
@@ -78,64 +81,113 @@
             background-color: var(--accent);
             color: #000;
             padding: 16px 48px;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             border: none;
-            font-weight: 800;
+            font-weight: 700;
             font-size: 15px;
-            letter-spacing: 0.5px;
-            transition: transform .3s, box-shadow .3s;
+            transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 40px rgba(96, 205, 255, 0.45);
+            box-shadow: 0 0 30px rgba(96, 205, 255, 0.4);
+            filter: brightness(1.1);
         }
+
+        .notice-board {
+            width: 85%;
+            max-width: 1100px;
+            background: linear-gradient(180deg, #1a1a1a 0%, #111111 100%);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 40px;
+            margin-top: 80px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .notice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .notice-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+
+        .notice-date {
+            font-size: 13px;
+            color: var(--text-dim);
+            font-family: monospace;
+        }
+
+        .notice-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .notice-item h4 {
+            margin: 0 0 15px 0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .notice-item ul {
+            padding-left: 18px;
+            margin: 0;
+            color: var(--text-dim);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .notice-item li { margin-bottom: 8px; }
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 28px;
             width: 85%;
             max-width: 1100px;
-            margin: 100px 0 60px;
+            margin: 60px 0;
         }
 
         .card {
             background: var(--card-bg);
             padding: 32px;
-            border-radius: 18px;
-            border: 1px solid rgba(255,255,255,0.04);
-            transition: transform .3s, border-color .3s;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            transition: all .3s;
         }
 
         .card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(96,205,255,0.25);
-        }
-
-        .card h3 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-
-        .card p {
-            margin: 0;
-            font-size: 14px;
-            color: var(--text-dim);
-            line-height: 1.7;
+            background: #1d1d1d;
+            border-color: rgba(96,205,255,0.2);
         }
 
         footer {
-            padding: 40px 20px;
-            color: rgba(255, 255, 255, 0.25);
-            font-size: 11px;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 12px;
             text-align: center;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .notice-content { grid-template-columns: 1fr; }
+            h1 { font-size: 2.8rem; }
         }
     </style>
 </head>
-
 <body>
 
 <nav>
@@ -150,9 +202,35 @@
     <p>
         Advanced Encryption Infrastructure<br>
         Open Source · Non-Profit · Privacy First<br>
-        Developed by Yi
+        Developed by Angecopm
     </p>
     <button id="entry_point" class="btn">View on GitHub</button>
+</section>
+
+<section class="notice-board">
+    <div class="notice-header">
+        <div class="notice-title">SYSTEM ANNOUNCEMENT</div>
+        <div class="notice-date">POSTED: 2026-01-18</div>
+    </div>
+    <div class="notice-content">
+        <div class="notice-item">
+            <h4 style="color: var(--accent);">CORE ADVANTAGES</h4>
+            <ul>
+                <li><strong>Global Millisecond Response:</strong> Powered by Cloudflare's 300+ global data centers/nodes for the lowest possible latency.</li>
+                <li><strong>High Availability Link:</strong> Edge distribution technology ensures stable connections even in complex network environments.</li>
+                <li><strong>Ultra-Lightweight Experience:</strong> Optimized UI rendering for Windows, ensuring low resource usage and instant feedback.</li>
+                <li><strong>Infrastructure Transparency:</strong> Real-time monitoring of global nodes with fully public system status and load information.</li>
+            </ul>
+        </div>
+        <div class="notice-item">
+            <h4 style="color: var(--danger);">CURRENT LIMITATIONS</h4>
+            <ul>
+                <li><strong>Media Support:</strong> File transfers, voice calls, and video calls are currently not supported in the stable branch.</li>
+                <li><strong>Registration Latency:</strong> Registration servers are located in US regions; some users may experience delays during initial signup.</li>
+                <li><strong>Routing Optimization:</strong> Dynamic global routing logic is still being refined during this early iteration phase.</li>
+            </ul>
+        </div>
+    </div>
 </section>
 
 <section class="features">
@@ -171,7 +249,7 @@
 </section>
 
 <footer>
-    © 2026 SERAPH NETWORK · Open Source · Privacy by Design
+    © 2026 SERAPH NETWORK · OPEN SOURCE · PRIVACY BY DESIGN
 </footer>
 
 <script>
